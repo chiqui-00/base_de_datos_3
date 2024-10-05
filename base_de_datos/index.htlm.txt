@@ -1,0 +1,39 @@
+unction doGet() {
+ let html = HtmlService.createHtmlOutputFromFile("index.html");
+ return html;
+}
+
+
+// Función para obtener todos los datos de la hoja de cálculo
+function obtenerRegistros() {
+ const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+ const data = sheet.getDataRange().getValues();
+ return data;
+}
+
+
+// Función para agregar un nuevo registro
+function agregarRegistro(registro) {
+ const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+ sheet.appendRow([registro.nombre, registro.email]);
+}
+
+
+// Función para actualizar un registro
+function actualizarRegistro(registro) {
+ const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+ const row = registro.row;
+ const values = [registro.nombre, registro.email];
+ sheet.getRange(row, 1, 1, values.length).setValues([values]);
+}
+
+
+// Función para eliminar un registro
+function eliminarRegistro(row) {
+ const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+ sheet.deleteRow(row);
+}
+
+function myFunction() {
+  
+}
